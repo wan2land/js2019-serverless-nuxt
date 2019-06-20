@@ -1,0 +1,31 @@
+service:
+  name: sample-api
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs8.10
+  region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
+  environment:
+    TZ: Asia/Seoul
+
+custom:
+  webpack:
+    includeModules: true
+
+functions:
+  http:
+    handler: src/entry.http
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
+      - http:
+          path: /{any+}
+          method: ANY
+          cors: true
