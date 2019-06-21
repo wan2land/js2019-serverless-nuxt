@@ -4,6 +4,21 @@ service:
 
 plugins:
   - serverless-domain-manager
+  - serverless-nuxt/plugin
+
+resources:
+  Resources:
+    AssetsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.nuxt.bucketName}
+        CorsConfiguration:
+          CorsRules:
+            - AllowedMethods:
+              - GET
+              - HEAD
+              AllowedOrigins:
+              - "*"
 
 provider:
   name: aws
@@ -14,6 +29,9 @@ provider:
     TZ: Asia/Seoul
 
 custom:
+  nuxt:
+    version: v0.0.1
+    bucketName: ${self:provider.stage}-js2019-sample
   customDomain:
     domainName: sample.dist.be
     certificateName: sample.dist.be
