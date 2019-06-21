@@ -1,5 +1,5 @@
 
-export default {
+module.exports = {
   mode: "universal",
   head: {
     title: "sample",

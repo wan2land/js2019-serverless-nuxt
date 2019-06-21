@@ -1,0 +1,28 @@
+
+service:
+  name: sample-app
+
+plugins:
+  - serverless-domain-manager
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs8.10
+  region: ${env:AWS_DEFAULT_REGION, 'us-east-1'}
+  environment:
+    TZ: Asia/Seoul
+
+custom:
+  customDomain:
+    domainName: sample.dist.be
+    certificateName: sample.dist.be
+    createRoute53Record: true
+    endpointType: regional
+
+functions:
+  nuxt:
+    handler: entry.nuxt
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}

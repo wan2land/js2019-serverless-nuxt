@@ -9,10 +9,12 @@
   "dependencies": {
     "@nuxtjs/auth": "^4.7.0",
     "@nuxtjs/axios": "^5.5.4",
+    "aws-serverless-express": "^3.3.6",
     "bootstrap-vue": "^2.0.0-rc.24",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "serverless-domain-manager": "^3.2.2"
   }
 }
